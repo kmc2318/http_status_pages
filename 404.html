@@ -4,65 +4,321 @@
   <meta charset="UTF-8">
   <title>404 Not Found</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      height: 100vh;
-      background: #f6efe3;
-      color: #2b2b2b;
-      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      min-height: 100vh;
+      background: #f7f8f6;
+      color: #162232;
+      font-family: "Courier New", monospace;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
-    .box {
-      width: 80%;
-      max-width: 620px;
-      padding: 45px 35px;
-      background: #fffdf8;
-      border: 4px solid #2b2b2b;
-      box-shadow: 12px 12px 0 #2b2b2b;
-      text-align: center;
+    .page {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 70px;
+      gap: 40px;
     }
 
-    .number {
-      font-size: 90px;
+    .text {
+      width: 46%;
+    }
+
+    .code {
+      font-size: 120px;
+      line-height: 0.9;
       font-weight: bold;
-      letter-spacing: 4px;
+      letter-spacing: 8px;
+      text-shadow: 4px 4px 0 #d9dee3;
     }
 
-    .animal {
-      font-size: 72px;
-      margin: 15px 0;
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 24px 0 32px;
+      letter-spacing: 2px;
     }
 
-    h1 {
-      font-size: 30px;
-      margin: 10px 0 20px;
+    .message {
+      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 18px;
+      line-height: 1.9;
+      color: #1d1d1d;
     }
 
-    p {
-      font-size: 17px;
-      line-height: 1.8;
+    .art {
+      width: 430px;
+      height: 360px;
+      position: relative;
     }
 
-    .small {
-      margin-top: 25px;
-      font-size: 14px;
-      color: #777;
+    .dog {
+      position: absolute;
+      right: 40px;
+      bottom: 25px;
+      width: 280px;
+      height: 270px;
+    }
+
+    .head {
+      position: absolute;
+      left: 38px;
+      top: 35px;
+      width: 210px;
+      height: 185px;
+      background: #ffffff;
+      border: 8px solid #162232;
+      border-radius: 48% 48% 44% 44%;
+      z-index: 3;
+    }
+
+    .spot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 92px;
+      height: 88px;
+      background: #9aa8b3;
+      border-radius: 40% 0 60% 0;
+    }
+
+    .ear {
+      position: absolute;
+      top: 40px;
+      width: 70px;
+      height: 135px;
+      background: #9aa8b3;
+      border: 8px solid #162232;
+      border-radius: 35px 35px 45px 45px;
+      z-index: 1;
+    }
+
+    .ear.left {
+      left: 8px;
+      transform: rotate(12deg);
+    }
+
+    .ear.right {
+      right: 8px;
+      transform: rotate(-12deg);
+    }
+
+    .eye {
+      position: absolute;
+      top: 78px;
+      width: 18px;
+      height: 24px;
+      background: #162232;
+      border-radius: 50%;
+    }
+
+    .eye.left {
+      left: 62px;
+    }
+
+    .eye.right {
+      right: 62px;
+    }
+
+    .brow {
+      position: absolute;
+      top: 60px;
+      width: 30px;
+      height: 6px;
+      background: #162232;
+    }
+
+    .brow.left {
+      left: 52px;
+      transform: rotate(20deg);
+    }
+
+    .brow.right {
+      right: 52px;
+      transform: rotate(-20deg);
+    }
+
+    .muzzle {
+      position: absolute;
+      left: 58px;
+      top: 105px;
+      width: 92px;
+      height: 58px;
+      background: #f7f8f6;
+      border: 6px solid #162232;
+      border-radius: 45px;
+    }
+
+    .nose {
+      position: absolute;
+      left: 32px;
+      top: 8px;
+      width: 26px;
+      height: 18px;
+      background: #162232;
+      border-radius: 50%;
+    }
+
+    .mouth {
+      position: absolute;
+      left: 32px;
+      top: 29px;
+      width: 30px;
+      height: 18px;
+      border-bottom: 6px solid #162232;
+      border-radius: 0 0 30px 30px;
+    }
+
+    .body {
+      position: absolute;
+      left: 78px;
+      bottom: 8px;
+      width: 130px;
+      height: 105px;
+      background: #ffffff;
+      border: 8px solid #162232;
+      border-radius: 45px 45px 25px 25px;
+      z-index: 2;
+    }
+
+    .paw {
+      position: absolute;
+      bottom: 0;
+      width: 54px;
+      height: 70px;
+      background: #ffffff;
+      border: 8px solid #162232;
+      border-radius: 28px;
+      z-index: 4;
+    }
+
+    .paw.left {
+      left: 68px;
+    }
+
+    .paw.right {
+      right: 68px;
+    }
+
+    .tail {
+      position: absolute;
+      right: 5px;
+      bottom: 65px;
+      width: 80px;
+      height: 32px;
+      background: #9aa8b3;
+      border: 8px solid #162232;
+      border-radius: 30px;
+      transform: rotate(-35deg);
+      z-index: 1;
+    }
+
+    .ground {
+      position: absolute;
+      left: 45px;
+      bottom: 0;
+      width: 340px;
+      height: 18px;
+      background: #b8c4cc;
+      border-radius: 50%;
+    }
+
+    .mark {
+      position: absolute;
+      top: 12px;
+      width: 8px;
+      height: 52px;
+      background: #162232;
+    }
+
+    .mark.m1 {
+      left: 190px;
+    }
+
+    .mark.m2 {
+      left: 150px;
+      top: 28px;
+      transform: rotate(-25deg);
+    }
+
+    .mark.m3 {
+      left: 230px;
+      top: 28px;
+      transform: rotate(25deg);
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .text {
+        width: 100%;
+      }
+
+      .code {
+        font-size: 90px;
+      }
+
+      .art {
+        transform: scale(0.85);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <div class="number">404</div>
-    <div class="animal">🐕💨</div>
-    <h1>ページが見つかりません</h1>
-    <p>
-      探していたページは、どこかへ散歩に出かけたようです。<br>
-      URLが間違っているか、ページが移動された可能性があります。
-    </p>
-    <div class="small">404 Not Found</div>
-  </div>
+  <main class="page">
+    <section class="text">
+      <div class="code">404</div>
+      <div class="title">Not Found</div>
+      <p class="message">
+        お探しのページは見つかりませんでした。<br>
+        迷子の犬のように、ページがどこかへ行ってしまったようです。<br>
+        URLをご確認のうえ、再度お試しください。
+      </p>
+    </section>
+
+    <section class="art">
+      <div class="mark m1"></div>
+      <div class="mark m2"></div>
+      <div class="mark m3"></div>
+
+      <div class="dog">
+        <div class="tail"></div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+
+        <div class="body"></div>
+        <div class="paw left"></div>
+        <div class="paw right"></div>
+
+        <div class="head">
+          <div class="spot"></div>
+          <div class="brow left"></div>
+          <div class="brow right"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="muzzle">
+            <div class="nose"></div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ground"></div>
+    </section>
+  </main>
 </body>
 </html>
