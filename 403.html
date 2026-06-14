@@ -1,15 +1,367 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-<meta charset="utf-8">
-<title>403 Forbidden</title>
-<style>
-body{text-align:center;font-family:sans-serif;margin:0}
-h1{background:#333;color:white;margin:0;padding:1em}
-.dummy{font-size:128px}
-</style>
+<head>
+  <meta charset="UTF-8">
+  <title>403 Forbidden</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f7f8f6;
+      color: #162232;
+      font-family: "Courier New", monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 70px;
+      gap: 40px;
+    }
+
+    .text {
+      width: 48%;
+    }
+
+    .code {
+      font-size: 120px;
+      line-height: 0.9;
+      font-weight: bold;
+      letter-spacing: 8px;
+      text-shadow: 4px 4px 0 #d9dee3;
+    }
+
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 24px 0 32px;
+      letter-spacing: 2px;
+    }
+
+    .message {
+      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 18px;
+      line-height: 1.9;
+      color: #1d1d1d;
+    }
+
+    .art {
+      width: 430px;
+      height: 360px;
+      position: relative;
+    }
+
+    .dog {
+      position: absolute;
+      right: 85px;
+      bottom: 25px;
+      width: 250px;
+      height: 260px;
+    }
+
+    .head {
+      position: absolute;
+      left: 35px;
+      top: 30px;
+      width: 190px;
+      height: 170px;
+      background: #fff;
+      border: 8px solid #162232;
+      border-radius: 48%;
+      z-index: 4;
+    }
+
+    .spot {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 90px;
+      height: 78px;
+      background: #9aa8b3;
+      border-radius: 0 38% 0 60%;
+    }
+
+    .ear {
+      position: absolute;
+      top: 35px;
+      width: 62px;
+      height: 120px;
+      background: #9aa8b3;
+      border: 8px solid #162232;
+      border-radius: 35px 35px 45px 45px;
+      z-index: 2;
+    }
+
+    .ear.left {
+      left: 10px;
+      transform: rotate(12deg);
+    }
+
+    .ear.right {
+      right: 10px;
+      transform: rotate(-12deg);
+    }
+
+    .eye {
+      position: absolute;
+      top: 74px;
+      width: 18px;
+      height: 24px;
+      background: #162232;
+      border-radius: 50%;
+    }
+
+    .eye.left { left: 55px; }
+    .eye.right { right: 55px; }
+
+    .brow {
+      position: absolute;
+      top: 58px;
+      width: 30px;
+      height: 6px;
+      background: #162232;
+    }
+
+    .brow.left {
+      left: 50px;
+      transform: rotate(-20deg);
+    }
+
+    .brow.right {
+      right: 50px;
+      transform: rotate(20deg);
+    }
+
+    .muzzle {
+      position: absolute;
+      left: 52px;
+      top: 104px;
+      width: 82px;
+      height: 54px;
+      background: #f7f8f6;
+      border: 6px solid #162232;
+      border-radius: 45px;
+    }
+
+    .nose {
+      position: absolute;
+      left: 28px;
+      top: 7px;
+      width: 24px;
+      height: 17px;
+      background: #162232;
+      border-radius: 50%;
+    }
+
+    .mouth {
+      position: absolute;
+      left: 24px;
+      top: 33px;
+      width: 32px;
+      height: 8px;
+      background: #162232;
+      border-radius: 10px;
+    }
+
+    .body {
+      position: absolute;
+      left: 73px;
+      bottom: 10px;
+      width: 110px;
+      height: 100px;
+      background: #fff;
+      border: 8px solid #162232;
+      border-radius: 42px 42px 24px 24px;
+      z-index: 2;
+    }
+
+    .paw {
+      position: absolute;
+      bottom: 0;
+      width: 50px;
+      height: 68px;
+      background: #fff;
+      border: 8px solid #162232;
+      border-radius: 28px;
+      z-index: 5;
+    }
+
+    .paw.left { left: 62px; }
+    .paw.right { right: 62px; }
+
+    .tail {
+      position: absolute;
+      right: 5px;
+      bottom: 75px;
+      width: 70px;
+      height: 30px;
+      background: #9aa8b3;
+      border: 8px solid #162232;
+      border-radius: 30px;
+      transform: rotate(-35deg);
+      z-index: 1;
+    }
+
+    .gate {
+      position: absolute;
+      left: 15px;
+      bottom: 22px;
+      width: 125px;
+      height: 165px;
+      background: #2d4050;
+      border: 8px solid #162232;
+      box-shadow: 9px 9px 0 #b8c4cc;
+    }
+
+    .gate::before {
+      content: "STOP";
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 76px;
+      height: 76px;
+      background: #e5845f;
+      color: #fff;
+      border: 7px solid #162232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+    }
+
+    .bar {
+      position: absolute;
+      left: -15px;
+      bottom: 115px;
+      width: 370px;
+      height: 34px;
+      background: #f4d879;
+      border: 8px solid #162232;
+      transform: rotate(-5deg);
+      z-index: 8;
+    }
+
+    .bar::before {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: -8px;
+      width: 34px;
+      height: 34px;
+      background: #162232;
+      box-shadow:
+        85px 0 0 #162232,
+        170px 0 0 #162232,
+        255px 0 0 #162232;
+      transform: skew(-20deg);
+    }
+
+    .ground {
+      position: absolute;
+      left: 35px;
+      bottom: 0;
+      width: 360px;
+      height: 18px;
+      background: #b8c4cc;
+      border-radius: 50%;
+    }
+
+    .mark {
+      position: absolute;
+      top: 10px;
+      width: 8px;
+      height: 50px;
+      background: #162232;
+    }
+
+    .mark.m1 { right: 190px; }
+    .mark.m2 {
+      right: 150px;
+      top: 26px;
+      transform: rotate(25deg);
+    }
+    .mark.m3 {
+      right: 230px;
+      top: 26px;
+      transform: rotate(-25deg);
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .text {
+        width: 100%;
+      }
+
+      .code {
+        font-size: 90px;
+      }
+
+      .art {
+        transform: scale(0.85);
+      }
+    }
+  </style>
+</head>
 <body>
-<h1>403 Forbidden</h1>
-<div class="dummy">⛔</div>
-<p>あかん。見る権限ないで。</p>
+  <main class="page">
+    <section class="text">
+      <div class="code">403</div>
+      <div class="title">Forbidden</div>
+      <p class="message">
+        このページを見る権限がありません。<br>
+        番犬が入り口を守っているようです。<br>
+        アクセスできるURLか確認してください。
+      </p>
+    </section>
+
+    <section class="art">
+      <div class="mark m1"></div>
+      <div class="mark m2"></div>
+      <div class="mark m3"></div>
+
+      <div class="gate"></div>
+      <div class="bar"></div>
+
+      <div class="dog">
+        <div class="tail"></div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="body"></div>
+        <div class="paw left"></div>
+        <div class="paw right"></div>
+
+        <div class="head">
+          <div class="spot"></div>
+          <div class="brow left"></div>
+          <div class="brow right"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="muzzle">
+            <div class="nose"></div>
+            <div class="mouth"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ground"></div>
+    </section>
+  </main>
 </body>
 </html>
